@@ -120,10 +120,8 @@ the MP.
 
 
 Paths are calculated on a virus, starting at a certain protein, `a`, from the
-list of proteins, which are layed out as shown in "geometry_guide.png": `
-abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSUVTWXYZ01234567
-
-`
+list of proteins, which are layed out as shown in "geometry_guide.png":
+ `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSUVTWXYZ01234567`
 
 Due to the restrictions on the primary vertex, we can reduce the search space by 
 symmetry considerations. We can ignore "short" (C5 move) edges of the 
@@ -160,10 +158,7 @@ script hamiltonian_path_instantiate.py
 
 Starting points are referred to by the same protein labelling map utilised in 
 the first step:
- `
-abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSUVTWXYZ01234567
-
-`
+ `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSUVTWXYZ01234567`
 
 ### Difference maps
 
