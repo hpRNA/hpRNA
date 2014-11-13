@@ -160,7 +160,10 @@ script hamiltonian_path_instantiate.py
 
 Starting points are referred to by the same protein labelling map utilised in 
 the first step:
- `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSUVTWXYZ01234567`
+ `
+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSUVTWXYZ01234567
+
+`
 
 ### Difference maps
 
