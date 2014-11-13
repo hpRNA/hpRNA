@@ -15,17 +15,17 @@ CONTENTS OF THIS FILE
 
   
  
-### Introduction
+  * Introduction
 
-### Requirements
+  * Requirements
 
-### Usage
+  * Usage
 
-### Configuration
+  * Configuration
 
-### License
+  * License
 
-### Maintainance
+  * Maintainance
 
 
 
@@ -194,8 +194,7 @@ each connection thus has a density profile associated with it.
 Some segments were not used further in the analysis if they had not sampled 
 many pixels, or were in parts of the tomogram where features would obscure the 
 RNA density. In particular, connections adjacent to the MP/pilus are discarded 
-as they may contain unmasked MP density.
-### The density profiles
+as they may contain unmasked MP density.### The density profiles
 
 
 The densities of the connections were compared, and statements about the 
