@@ -225,9 +225,8 @@ short edge. The next 0 or 1 sets the edge either to unoccupied or occupied,
 respectively. Finally, two columns represented the name of the edge
  corresponding to the protein naming.
 
- For example, in the constraints file, a row of ~~L 1 e f
-~~ means that the long edge between the heterodimers 'e' and 'f' is constrained to 
-be occupied in the analysis. Similarly ~~S 0 T Q~~ 
+ For example, in the constraints file, a row of `L 1 e f` means that the long edge between the heterodimers 'e' and 'f' is constrained to 
+be occupied in the analysis. Similarly `S 0 T Q` 
 means the short edge between the heterodimers 'Q' and 'T' is constrained to be 
 non-occupied in the analysis. Note that in the provided analysis, we were
 unable to make use of any short-edge data, as the resolution of the asymmetric 
@@ -236,7 +235,7 @@ long-edge data.
 
 Paths corresponding to a constraints file can be found by running the 
 hamiltonian_path_constrain.py script:
- ~~python <pick file of input paths> <constraints file>~~
+ `python <pick file of input paths> <constraints file>`
 
 
 
