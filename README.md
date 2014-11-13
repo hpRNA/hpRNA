@@ -104,7 +104,7 @@ alterations would have to be made in following steps in the code. For example,
 for MS2, paths of length 59 are implicitly required to traverse the entire 
 capsid. However, there are restrictions about the start/end vertex (which is 
 designated as the same due to 5' and 3' ends binding to MP). The path cannot 
-visit this vertex except at start/end (unlike other vertices). Other viruse s
+visit this vertex except at start/end (unlike other vertices). Other viruses 
 will have different special cases, which requires careful consideration of the
 literature.
 
@@ -119,19 +119,19 @@ the MP.
 
 
 
-Paths are calculated on a virus, starting at a certain protein, 'a', from the
-list of proteins, which are layed out as shown in "geometry_guide.png":
+Paths are calculated on a virus, starting at a certain protein, `a`, from the
+list of proteins, which are layed out as shown in "geometry_guide.png": `
 abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSUVTWXYZ01234567
 
-
+`
 
 Due to the restrictions on the primary vertex, we can reduce the search space by 
 symmetry considerations. We can ignore "short" (C5 move) edges of the 
 polyhedron: short moves around the five-fold primary vertex. This reduces the 
-path to 57 moves, the first and last of which are both necessari ly "long" (DS 
-move) moves.
+path to 57 moves, the first and last of which are both necessarily "long" (DS 
+move) moves. 
 
-Additionally, we reduce the search space by fixing a direction of the second
+Additionally, we reduce the search space by fixing a direction of the second 
 move. This cannot be "long" (DS) as this would visit a previously visited heterodimer. Thus we arbitrarily pick a single direction. A mirror image path can be
 created afterwards to recreate the ignored direction. 
 
@@ -140,7 +140,7 @@ generalised into moves, i.e. described as the order of mapping operations
 between proteins, rather than the proteins themselves. This allows an easier way 
 to recreate the paths starting from any given protein. Also, calculation of 
 symmetric and mirror paths are much easier when the protein positions are 
-disregarded: these degenerate paths can be calculated with simple string
+disregarded: these degenerate paths can be calculated with simple string 
 manipulations. This is all undertaken in the script 
 hamiltonian_paths_multiply.py
 
@@ -156,14 +156,14 @@ and finishing at defined points on the viral capsid. These starting points
 come from consideration of the binding of RNA 5' and 3' to the maturation
  protein, which localises the ends of the RNA in the vicinity of MP. We have 
 called this "instantiating" individual paths, and this is undertaken in the 
-script hamiltonian_path_instantiate.py
+script hamiltonian_path_instantiate.py 
 
 Starting points are referred to by the same protein labelling map utilised in 
 the first step:
-    abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSUVTWXYZ01234567
+ `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSUVTWXYZ01234567
 
 
-
+`
 
 ### Difference maps
 
@@ -178,8 +178,8 @@ maps are made equivalent by trilinear interpolation of the reduced-resolution
 X-ray structure. A contour mask of 0.5sigma is used to sample the low-resolution
  map and used to eliminate the protein density. 
 A similar difference map is created between an icosahedrally-averaged map 
-[Toropova et al., J Mol Biol 2008] and the resampled filtered protein, yieldin g
-a symmetric cage of RNA with a polyhedral shape.
+[Toropova et al., J Mol Biol 2008] and the resampled filtered protein, yielding
+ a symmetric cage of RNA with a polyhedral shape.
 
  For both maps, the outer shell of RNA in proximity to capsid is isolated by
 icosahedral masking with vertex radii of 80AA and 120AA.
@@ -194,7 +194,9 @@ each connection thus has a density profile associated with it.
 Some segments were not used further in the analysis if they had not sampled 
 many pixels, or were in parts of the tomogram where features would obscure the 
 RNA density. In particular, connections adjacent to the MP/pilus are discarded 
-as they may contain unmasked MP density.### The density profiles
+as they may contain unmasked MP density.
+
+### The density profiles
 
 
 The densities of the connections were compared, and statements about the 
@@ -205,12 +207,12 @@ The connections were named in the following way. We had labelled the vertices as
 these are the easiest to recognise in three-dimensional imaging programs. We 
 have included a mapping of the vertices to the proteins, by way of the PS 
 positions being labelled as proteins with the following letters and numbers:
- abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSUVTWXYZ01234567
+ `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSUVTWXYZ01234567`
 
 
 "geometry_guide.png" shows the relation between the heterodimers and vertices. 
 The maturation protein has been (arbitrarily) chosen to map to the homodimer on
-the two-fold axis between vertices 5 and 6. This is marked on the path outputs.
+the two-fold axis between vertices `5` and `6`. This is marked on the path outputs.
 
 
 
@@ -220,14 +222,14 @@ the two-fold axis between vertices 5 and 6. This is marked on the path outputs.
 
 
 Constraints were saved in a file. An example file is ms2.constraints. In the 
-first column, and "L" or "S" represents whether the constraint set is a long or 
+first column, and `L` or `S` represents whether the constraint set is a long or 
 short edge. The next 0 or 1 sets the edge either to unoccupied or occupied, 
 respectively. Finally, two columns represented the name of the edge
  corresponding to the protein naming.
 
- For example, in the constraints file, a row of `L 1 e f` means that the long edge between the heterodimers 'e' and 'f' is constrained to 
+ For example, in the constraints file, a row of `L 1 e f` means that the long edge between the heterodimers `e` and `f` is constrained to 
 be occupied in the analysis. Similarly `S 0 T Q` 
-means the short edge between the heterodimers 'Q' and 'T' is constrained to be 
+means the short edge between the heterodimers `Q` and `T` is constrained to be 
 non-occupied in the analysis. Note that in the provided analysis, we were
 unable to make use of any short-edge data, as the resolution of the asymmetric 
 tomogram was too low. However, this did not prevent a good result using only 
