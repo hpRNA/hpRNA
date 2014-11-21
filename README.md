@@ -9,7 +9,6 @@ Code used to generate and interrogate Hamiltonian paths corresponding to bacteri
 
 
 CONTENTS OF THIS FILE
-
 ---------------------
  
   * Introduction
