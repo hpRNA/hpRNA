@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>hpRNA by geraets</title>
+    <title>hpRNA by hpRNA</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -20,47 +20,155 @@
         <p class="header">Hamiltonian paths for bacteriophage MS2</p>
 
         <ul>
-          <li class="download"><a class="buttons" href="https://github.com/geraets/hpRNA/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/geraets/hpRNA/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/geraets/hpRNA">View On GitHub</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/hpRNA/hpRNA/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/hpRNA/hpRNA/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/hpRNA/hpRNA">View On GitHub</a></li>
         </ul>
 
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/geraets">geraets</a></p>
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/hpRNA">hpRNA</a></p>
 
 
       </header>
       <section>
-        <h3>
-<a id="welcome-to-hprna" class="anchor" href="#welcome-to-hprna" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to hpRNA</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+        <h1>
+<a id="hprna-readme" class="anchor" href="#hprna-readme" aria-hidden="true"><span class="octicon octicon-link"></span></a>hpRNA README</h1>
 
 <h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<a id="v-08102014" class="anchor" href="#v-08102014" aria-hidden="true"><span class="octicon octicon-link"></span></a>v. 08/10/2014</h3>
 
 <h3>
-<a id="rather-drive-stick" class="anchor" href="#rather-drive-stick" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<a id="james-geraets-university-of-york" class="anchor" href="#james-geraets-university-of-york" aria-hidden="true"><span class="octicon octicon-link"></span></a>James Geraets, University of York</h3>
 
 <h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<a id="jg923yorkacuk" class="anchor" href="#jg923yorkacuk" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="mailto:jg923@york.ac.uk">jg923@york.ac.uk</a>
+</h3>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>Code used to generate and interrogate Hamiltonian paths corresponding to bacteriophage MS2. For publication 2014. GLP v3 license applies: see separate file for information.</p>
 
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<p>CONTENTS OF THIS FILE</p>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<hr>
+
+<ul>
+<li>Introduction</li>
+<li>Requirements</li>
+<li>Usage</li>
+<li>Configuration</li>
+<li>License</li>
+<li>Maintainance</li>
+</ul>
+
+<h2>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>INTRODUCTION</h2>
+
+<p>This code, as supplied, generates Hamiltonian paths as models for the RNA organisation in proximity to capsid, for the bacteriophage MS2. A script is also supplied that allows the user to apply constraints to the library of Hamiltonian paths, thus enabling the addition of constraints arising from further structural insights, such as restriction to circular Hamiltonian paths, that narrow down the possible path solutions. The software is provided "as is", but the author is willing to correspond to help anyone with interest to amend/adapt the code, to interrogate asymmetric structures of other viruses and determine possible RNA conformations. A link to a scientific manuscript describing the process will be added here upon publication.</p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>REQUIREMENTS</h2>
+
+<p>The software is coded in python 2.7, a scripting language that is very easy to use and adapt. More information on python can be found at python.org or greenteapress.com/thinkpython/ 
+Required python modules are:</p>
+
+<ul>
+<li>pycairo</li>
+<li>matplotlib</li>
+</ul>
+
+<p>Other required software:</p>
+
+<ul>
+<li>cairo    cairographics.org</li>
+</ul>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>USAGE</h2>
+
+<p>Step-by-step guide to recreating results for MS2.</p>
+
+<ul>
+<li>Generating Hamiltonian paths</li>
+</ul>
+
+<p>Using hamiltonian_path_generate.py the user can generate Hamiltonian paths that relate to the geometry of the RNA density in proximity to capsid. In the case of bacteriophage MS2, the geometric cages is as shown in Fig. 1b in the manuscript, with edges connecting the 60 packaging signals (PSs) in contact with capsid protein. This geometry is specified within the script. Therefore, the script as provided can be used for MS2, GA or any Leviviridae with RNA cages of the same topology (i.e. polyhedral cages with the same number of vertices and edge connections between them, irrespective of 
+edge length or relative orientations of the edges).</p>
+
+<p>However, the neighbour maps and general geometry in the script can easily be substituted to make the code applicable to any cage of interest, and thus treat viruses with different geometries. If that were desired, other alterations would also have to be made in following steps in the code. For example, the number indicating the length of the path would have to be adjusted (note that for MS2, all paths are of length 59). </p>
+
+<p>We have utilised several steps to speed up the derivation of the Hamiltonian paths. However, for clarity, many of these have been rolled back for this open-source code. Yet many special cases for MS2 have been coded, and must be considered when adapting the code: for example, in MS2 the paths is effectively circular, because both 5' and 3' end bind to MP. In the code, this is specified as as a vertex that the path can only visit  at the start and end. This constraint will also apply to many other viruses, but should be omitted if there is no evidence of such circularisation. </p>
+
+<p>Paths are calculated with reference to the structural organisation of the capsid. For this, a labelling system is introduced, in which proteins are labeled as (cf "geometry_guide.png"): <code>abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSUVTWXYZ01234567</code>. </p>
+
+<p>In the analysis presented in this paper, we ignore density associated with "short" edges of the polyhedron, i.e. only consider density related to long edges. That could be modified if higher resolution data were available for the short edges as well. </p>
+
+<p>Once paths have been generated on the protein neighbour map, they can be generalised into moves, i.e. described as the order of mapping operations between proteins, rather than the proteins themselves. This allows an easier way to recreate the paths starting from any given protein. Also, calculation of symmetric and mirror paths is much easier when the protein positions are disregarded: these degenerate paths can be calculated with simple string manipulations. This is all undertaken in the script hamiltonian_paths_multiply.py</p>
+
+<ul>
+<li>Mapping Hamiltonian paths onto the virus</li>
+</ul>
+
+<p>Given the calculated generalised paths, we have to superimpose these paths onto the RNA density, starting and finishing at defined points with reference to the viral capsid. These starting points come from consideration of the binding of the RNA 5' and 3' end regions to the maturation protein, which localises the ends of the RNA in the vicinity of MP. We have called this "instantiating" individual paths, and this is undertaken in the script hamiltonian_path_instantiate.py. Starting points are referred to by the same protein labelling map utilised in the first step, see above. </p>
+
+<ul>
+<li>Difference maps</li>
+</ul>
+
+<p>The analysis is based on a asymmetric structure of MS2, obtained via averaging of individual particles [Dent et al., Structure 2013]. The asymmetric structure was obtained by imaging mature MS2 bound to its natural receptor, the F-pilus of E. coli. The data can be found in the Electron Microscopy DataBank, with tag EMD-2365.</p>
+
+<p>The X-ray structure of the protein capsid of MS2 can be found at the Protein Data Bank, with PDBID 2MS2. This protein structure was filtered to 39AA resolution to match the EM data. Then the pixel size and orientation of the two maps are made equivalent by trilinear interpolation of the reduced-resolution X-ray structure. A contour mask of 0.5sigma is used to sample the low-resolution map and used to eliminate the protein density. A similar difference map is created between an icosahedrally-averaged map  [Toropova et al., J Mol Biol 2008] and the resampled filtered protein, yielding a symmetric cage of RNA with a polyhedral shape.</p>
+
+<p>For both maps, the outer shell of RNA in proximity to capsid is isolated by icosahedral masking with vertex radii of 80AA and 120AA.</p>
+
+<ul>
+<li>Mapping data onto the geometric model</li>
+</ul>
+
+<p>The polyhedral density was partitioned into segments attributed to the edges of the polyhedral cage of RNA seen in the symmetric map. Pixels from the asymmetric RNA map can be associated with defined segments on the polyhedral shell, and each connection thus has a density profile associated with it.</p>
+
+<p>Some segments were not used further in the analysis if they had not sampled many pixels, or were in parts of the tomogram where other features would obscure the RNA density. In particular, connections adjacent to the MP/pilus are discarded as they may contain unmasked MP density.</p>
+
+<ul>
+<li>The density profiles</li>
+</ul>
+
+<p>The densities of the connections were compared, and statements about the likelihood of RNA occupancy were made about these connections. These were noted as constraints.</p>
+
+<p>The connections were named with reference to the vertices they connect. In particular, we labelled the vertices with reference to the capsid proteins, using again the labelling system introduced earlier, i.e. PS positions being labelled as proteins with the following letters and numbers: <code>abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSUVTWXYZ01234567</code></p>
+
+<p>"geometry_guide.png" shows the relation between the heterodimers and vertices. The maturation protein has been (arbitrarily and without loss of generality) chosen to map to the homodimer on the two-fold axis between vertices 5 and 6. This is marked on the path outputs.</p>
+
+<ul>
+<li>Constraining paths</li>
+</ul>
+
+<p>Constraints were saved in a file, see ms2.constraints as an example. In the first column, <code>L</code> or <code>S</code> represents whether the constraint is for a long or a short edge. The next entry, a <code>0</code> or a <code>1</code>, sets the edge either to <code>unoccupied</code> or <code>occupied</code>. This is followed by two columns representing the names of the proteins the edge is connecting, e.g. a row in the constraints file reading <code>L 1 e f</code> means that the long edge between the heterodimers 'e' and 'f' is constrained to be occupied in the analysis. Similarly, <code>S 0 T Q</code> means that the short edge between the heterodimers <code>Q</code> and <code>T</code> is constrained to be non-occupied in the analysis. Note that in the analysis carried out here, we were unable to make use of any data regarding short edges, as the resolution of the asymmetric tomogram was too low. However, information regarding long edges turned out to be sufficient for the analysis. Paths corresponding to a constraints file can be found by running the hamiltonian_path_constrain.py script using the command line: <code>python &lt;pick file of input paths&gt; &lt;constraints file&gt;</code></p>
+
+<ul>
+<li>Drawing Hamiltonian path solutions</li>
+</ul>
+
+<p>Figures of the Hamiltonian path solutions can be displayed in 2d using hamiltonian_path_draw.py</p>
+
+<h2>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>CONFIGURATION</h2>
+
+<p>Given the above guide, and comments in the code, the program can be amended/adjusted to calculate Hamiltonian paths for a wide variety of scenarios, and additional constraints can be included if desired by the user. For support/collaboration, please contact <a href="mailto:jg923@york.ac.uk">jg923@york.ac.uk</a></p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>LICENSE</h2>
+
+<p>License applies to software. Please see separate license file.</p>
+
+<h2>
+<a id="maintainance" class="anchor" href="#maintainance" aria-hidden="true"><span class="octicon octicon-link"></span></a>MAINTAINANCE</h2>
+
+<p>This software is currently maintained by James Geraets, University of York. Support is envisaged for at least a couple of years. Comments and queries should be addressed by email or to:</p>
+
+<p>James Geraets
+RCH\321 YCCSA
+University of York
+York
+YO10 5GE
+United Kingdom</p>
       </section>
       <footer>
         <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
