@@ -1,0 +1,17 @@
+*.DS_Store
+constrain/._hamiltonian_path_constrain.py
+constrain/._hamiltonian_path_draw.py
+constrain/._ms2.constraints
+constrain/draw/._final_paths-pick-ms2-12122133131331213122133331221331313312133331313313333131-2.png
+constrain/draw/._final_paths-pick-ms2-12212122221222212213121333313312222133331222213333122221-2.png
+constrain/draw/._final_paths-pick-ms2-12212222131213333133122221333312222133331221222212222121-2.png
+constrain/draw/._final_paths-pick-ms2-12212222131213333133122221333312222133331221222212222121-O.png
+constrain/draw/._final_paths-pick-ms2-12222133331222213333122221331333312131221222212222121221-W.png
+constrain/draw/._scaffold.png
+generate/._final_paths.hpath
+generate/._hamiltonian_path_generate.py
+generate/._hamiltonian_path_multiply.py
+generate/._ham_cycles.txt
+generate/._ham_pseudocycles.txt
+generate/._trimmed_paths.hpath
+instantiate/._hamiltonian_path_instantiate.py
