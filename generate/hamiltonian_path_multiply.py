@@ -15,7 +15,7 @@
 ##  library can be used to interrogate viral RNA structure information.       ##
 ##  Paths are represented in 1,2,3 notation: moves between proteins are       ##
 ##  notated rather than the proteins themselves. The generalised notation     ##
-##  is more effective for identifying symmetries.
+##  is more effective for identifying symmetries.                             ##
 ##                                                                            ##
 ################################################################################
 
