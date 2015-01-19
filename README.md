@@ -13,6 +13,7 @@ CONTENTS OF THIS FILE
   * Introduction
   * Requirements
   * Usage
+  * Examples
   * Configuration
   * License
   * Maintainance
@@ -38,7 +39,7 @@ Other required software:
 USAGE
 -----
 
-Please see NOTES.md file for contextual guidance.
+Please see NOTES.md file or website (hpRNA.github.io) for contextual guidance.
 
   * hpRNA_generate.py
   
