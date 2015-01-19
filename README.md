@@ -1,12 +1,11 @@
 hpRNA README
 ============
 
-### v. 08/10/2014
+### v. 15/01/2015
 ### James Geraets, University of York
 ### jg923@york.ac.uk
 
 Code used to generate and interrogate Hamiltonian paths corresponding to bacteriophage MS2. For publication 2014. GLP v3 license applies: see separate file for information.
-
 
 CONTENTS OF THIS FILE
 ---------------------
@@ -21,12 +20,13 @@ CONTENTS OF THIS FILE
 INTRODUCTION
 ------------
 
-This code, as supplied, generates Hamiltonian paths as models for the RNA organisation in proximity to capsid, for the bacteriophage MS2. A script is also supplied that allows the user to apply constraints to the library of Hamiltonian paths, thus enabling the addition of constraints arising from further structural insights, such as restriction to circular Hamiltonian paths, that narrow down the possible path solutions. The software is provided "as is", but the author is willing to correspond to help anyone with interest to amend/adapt the code, to interrogate asymmetric structures of other viruses and determine possible RNA conformations. A link to a scientific manuscript describing the process will be added here upon publication.
+This code, as supplied, generates Hamiltonian paths as models for the RNA organization in proximity to capsid, for the bacteriophage MS2. A script is also supplied that allows the user to apply constraints to the library of Hamiltonian paths, thus enabling the addition of constraints arising from further structural insights, such as restriction to circular Hamiltonian paths, that narrow down the possible path solutions. The software is provided "as is", but the author is willing to correspond to help anyone with interest to amend/adapt the code, to interrogate asymmetric structures of other viruses and determine possible RNA conformations. A link to a scientific manuscript describing the process will be added here upon publication. See the NOTES.md file for additional guidance, or the website at hpRNA.github.io.
 
 REQUIREMENTS
 ------------
 
 The software is coded in python 2.7, a scripting language that is very easy to use and adapt. More information on python can be found at python.org or greenteapress.com/thinkpython/ 
+
 Required python modules are:
 
   * pycairo
@@ -38,61 +38,177 @@ Other required software:
 USAGE
 -----
 
-Step-by-step guide to recreating results for MS2.
+Please see NOTES.md file for contextual guidance.
 
-  * Generating Hamiltonian paths
+  * hpRNA_generate.py
+  
+Generate connected paths on a polyhedral cage
 
-Using hamiltonian_path_generate.py the user can generate Hamiltonian paths that relate to the geometry of the RNA density in proximity to capsid. In the case of bacteriophage MS2, the geometric cages is as shown in Fig. 1b in the manuscript, with edges connecting the 60 packaging signals (PSs) in contact with capsid protein. This geometry is specified within the script. Therefore, the script as provided can be used for MS2, GA or any Leviviridae with RNA cages of the same topology (i.e. polyhedral cages with the same number of vertices and edge connections between them, irrespective of 
-edge length or relative orientations of the edges).
+usage: hpRNA_generate.py -c CONNECTIVITY -s START [-h] [-e END] [-r REQUIRE]
+                         [-p PRECLUDE] [-l LENGTH] [-i ITERATION]
+                         [-d DEGENERACY] [-b] [-o OUTPUT]
 
-However, the neighbour maps and general geometry in the script can easily be substituted to make the code applicable to any cage of interest, and thus treat viruses with different geometries. If that were desired, other alterations would also have to be made in following steps in the code. For example, the number indicating the length of the path would have to be adjusted (note that for MS2, all paths are of length 59). 
+required arguments:
 
-We have utilised several steps to speed up the derivation of the Hamiltonian paths. However, for clarity, many of these have been rolled back for this open-source code. Yet many special cases for MS2 have been coded, and must be considered when adapting the code: for example, in MS2 the paths is effectively circular, because both 5' and 3' end bind to MP. In the code, this is specified as as a vertex that the path can only visit  at the start and end. This constraint will also apply to many other viruses, but should be omitted if there is no evidence of such circularisation. 
+  -c CONNECTIVITY, --connectivity CONNECTIVITY
+                        File CONNECTIVITY. Provide a neighbor connectivity
+                        map. First column position linked to positions in
+                        other columns. Number of links does not have to be
+                        uniform.
 
-Paths are calculated with reference to the structural organisation of the capsid. For this, a labelling system is introduced, in which proteins are labeled as (cf "geometry_guide.png"): `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSUVTWXYZ01234567`. 
+  -s START, --start START
+                        File START. Provide multiple starting positions (or
+                        partial paths of same length), to begin each generated
+                        path.
 
-In the analysis presented in this paper, we ignore density associated with "short" edges of the polyhedron, i.e. only consider density related to long edges. That could be modified if higher resolution data were available for the short edges as well. 
+optional arguments:
 
-Once paths have been generated on the protein neighbour map, they can be generalised into moves, i.e. described as the order of mapping operations between proteins, rather than the proteins themselves. This allows an easier way to recreate the paths starting from any given protein. Also, calculation of symmetric and mirror paths is much easier when the protein positions are disregarded: these degenerate paths can be calculated with simple string manipulations. This is all undertaken in the script hamiltonian_paths_multiply.py
+  -h, --help            Provides these usage instructions, then exits.
 
-  * Mapping Hamiltonian paths onto the virus
+  -e END, --end END     File END. Enforce the endings to the generated paths
+                        that are considered complete. Is used to ensure
+                        circularization.
 
-Given the calculated generalised paths, we have to superimpose these paths onto the RNA density, starting and finishing at defined points with reference to the viral capsid. These starting points come from consideration of the binding of the RNA 5' and 3' end regions to the maturation protein, which localises the ends of the RNA in the vicinity of MP. We have called this "instantiating" individual paths, and this is undertaken in the script hamiltonian_path_instantiate.py. Starting points are referred to by the same protein labelling map utilised in the first step, see above. 
+  -r REQUIRE, --require REQUIRE
+                        File REQUIRE. Position availability requiring
+                        previously visited positions. A move to positions in
+                        first column requires prior visitation to those in
+                        subsequent columns.
 
-  * Difference maps
+  -p PRECLUDE, --preclude PRECLUDE
+                        File PRECLUDE. Provide exclusion based on previously
+                        visited positions. A move to positions in first column
+                        cannot occur if those in subsequent columns have
+                        previously been visited.
 
-The analysis is based on a asymmetric structure of MS2, obtained via averaging of individual particles [Dent et al., Structure 2013]. The asymmetric structure was obtained by imaging mature MS2 bound to its natural receptor, the F-pilus of E. coli. The data can be found in the Electron Microscopy DataBank, with tag EMD-2365.
+  -l LENGTH, --length LENGTH
+                        File LENGTH. Length of paths to consider, otherwise
+                        paths visiting every position in CONNECTIVITY are
+                        assumed: i.e. Hamiltonian path.
 
-The X-ray structure of the protein capsid of MS2 can be found at the Protein Data Bank, with PDBID 2MS2. This protein structure was filtered to 39AA resolution to match the EM data. Then the pixel size and orientation of the two maps are made equivalent by trilinear interpolation of the reduced-resolution X-ray structure. A contour mask of 0.5sigma is used to sample the low-resolution map and used to eliminate the protein density. A similar difference map is created between an icosahedrally-averaged map  [Toropova et al., J Mol Biol 2008] and the resampled filtered protein, yielding a symmetric cage of RNA with a polyhedral shape.
+  -i ITERATION, --iteration ITERATION
+                        Int ITERATION. Resume previously started generation at
+                        supplied ITERATION (corresponding to path length).
 
-For both maps, the outer shell of RNA in proximity to capsid is isolated by icosahedral masking with vertex radii of 80AA and 120AA.
+  -d DEGENERACY, --degeneracy DEGENERACY
+                        File DEGENERACY. Rotational symmetry of polyhedron:
+                        all moves. For example, if the cage has icosahedral
+                        symmetry, there will be 12*5=60 identical symmetric
+                        views. Each line of the file represents a rotation to
+                        an identical view: in every row, the elements have the
+                        same relationship to each other, but the rows begin at
+                        different positions.
 
-  * Mapping data onto the geometric model
+  -b, --both            Option. Paths are calculated both 5'-3' and 3'-5'.
+                        This only will make a difference if --require or
+                        --preclude are used. Requires --degeneracy.
 
-The polyhedral density was partitioned into segments attributed to the edges of the polyhedral cage of RNA seen in the symmetric map. Pixels from the asymmetric RNA map can be associated with defined segments on the polyhedral shell, and each connection thus has a density profile associated with it.
+  -o OUTPUT, --output OUTPUT
+                        Directory OUTPUT. Choose output directory. Default
+                        'paths'.
 
-Some segments were not used further in the analysis if they had not sampled many pixels, or were in parts of the tomogram where other features would obscure the RNA density. In particular, connections adjacent to the MP/pilus are discarded as they may contain unmasked MP density.
+  * hpRNA_constrain.py
+  
+Realize and constrain connected paths mapping to a polyhedral cage.
 
-* The density profiles
+usage: hpRNA_constrain.py -p PATHS [-h] [-x CONSTRAINTS] [-d DEGENERACY]
+                          [-r REALIZE] [-b] [-o OUTPUT] [-m] [-c CONNECTIVITY]
+                          [--ms2]
 
-The densities of the connections were compared, and statements about the likelihood of RNA occupancy were made about these connections. These were noted as constraints.
+required arguments:
 
-The connections were named with reference to the vertices they connect. In particular, we labelled the vertices with reference to the capsid proteins, using again the labelling system introduced earlier, i.e. PS positions being labelled as proteins with the following letters and numbers: `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSUVTWXYZ01234567`
-    
-"geometry_guide.png" shows the relation between the heterodimers and vertices. The maturation protein has been (arbitrarily and without loss of generality) chosen to map to the homodimer on the two-fold axis between vertices 5 and 6. This is marked on the path outputs.
+  -p PATHS, --paths PATHS
+                        File PATHS. Provide paths to realize or constrain.
 
- * Constraining paths
+optional arguments:
 
-Constraints were saved in a file, see ms2.constraints as an example. In the first column, `L` or `S` represents whether the constraint is for a long or a short edge. The next entry, a `0` or a `1`, sets the edge either to `unoccupied` or `occupied`. This is followed by two columns representing the names of the proteins the edge is connecting, e.g. a row in the constraints file reading `L 1 e f` means that the long edge between the heterodimers 'e' and 'f' is constrained to be occupied in the analysis. Similarly, `S 0 T Q` means that the short edge between the heterodimers `Q` and `T` is constrained to be non-occupied in the analysis. Note that in the analysis carried out here, we were unable to make use of any data regarding short edges, as the resolution of the asymmetric tomogram was too low. However, information regarding long edges turned out to be sufficient for the analysis. Paths corresponding to a constraints file can be found by running the hamiltonian_path_constrain.py script using the command line: `python <pick file of input paths> <constraints file>`
+  -h, --help            Provides these usage instructions, then exits.
 
- * Drawing Hamiltonian path solutions
+  -x CONSTRAINTS, --constraints CONSTRAINTS
+                        File CONSTRAINTS. Provide constraints for paths, i.e.
+                        edges of the polyhedral cage that are either present
+                        (1) or not present (0).
 
-Figures of the Hamiltonian path solutions can be displayed in 2d using hamiltonian_path_draw.py
+  -d DEGENERACY, --degeneracy DEGENERACY
+                        File DEGENERACY. Rotational symmetry of polyhedron:
+                        all moves. For example, if the cage has icosahedral
+                        symmetry, there will be 12*5=60 identical symmetric
+                        views. Each line of the file represents a rotation to
+                        an identical view: in every row, the elements have the
+                        same relationship to each other, but the rows begin at
+                        different positions.
+
+  -r REALIZE, --realize REALIZE
+                        File REALIZE. Points to realize the paths from.
+                        Generated paths start from a small subset of points,
+                        specified in the START file. Realize creates copies of
+                        these general paths, to the symmetric frames of points
+                        given in the REALIZE file, with respect to the frame
+                        of the initial path being 'a'. Requires --degeneracy.
+
+  -b, --backwards       Option. Realize in both directions: paths are reversed
+                        additionally. Requires --realize.
+
+  -o OUTPUT, --output OUTPUT
+                        Directory OUTPUT. Choose output directory. Default
+                        'paths'.
+
+  -m, --moves           Option. Abstracts to a numbered move view, suitable
+                        for simple symmetric cages. Numbered moves are
+                        allocated from CONNECTIVITY file, thus correct
+                        ordering of row elements in CONNECTIVITY file is
+                        essential. Requires --connectivity.
+
+  -c CONNECTIVITY, --connectivity CONNECTIVITY
+                        File CONNECTIVITY. Provide a neighbor connectivity
+                        map. First column position linked to positions in
+                        other columns. Number of links does not have to be
+                        uniform.
+
+  --ms2                 Option. Additional analysis to compare to published
+                        example of bacteriophage ms2. Provides graphical
+                        output. Requires --connectivity.
+
+EXAMPLES
+--------
+
+example_1:      ./hpRNA_generate.py -c example_1/connectivity.txt
+                -s example_1/start.txt -e example_1/end.txt -o example_1
+
+    This would generate Hamiltonian paths for the ms2 example. Neighbor map corresponds (example_1/connectivity.txt) shows how the positions are linked. The paths start at position 'a' and end at postions 'd','u','N','t' which are at the same five-fold vertex as 'a' (see geometry_guide.png). Paths saved to example_1 folder. This script can run *very* slowly. A sped up version is provided as example 4.
+
+example_2:      ./hpRNA_generate.py -c example_2/connectivity.txt
+                -s example_2/start.txt -l example_2/length.txt -o example_2
+                -b -d example_2/degeneracy.txt -r example_2/require.txt
+
+    This would generate connected paths corresponding to neighbor map in connectivity.txt (ms2), starting with 'ac', and of lengths 12 and 8. These would not be Hamiltonian paths. The paths are extended in each direction (using the both flag - compare with and without). Additionally, the entire first vertex requires nucleating before move to another position (see require.txt, every position requires the positions of the first vertex filled). Paths saved to example_2 folder.
+
+example_3:      ./hpRNA_generate.py -c example_3/connectivity.txt
+                -s example_3/start.txt -o example_3
+
+    Generate connected paths on a dodecahedron, starting with 'ab'. The connectivity map in this folder is different, corresponding to the dodecahedral geometry. Paths saved to example_3 folder.
+
+example_4:      ./hpRNA_generate.py -c example_4/connectivity.txt
+                -s example_4/start.txt -e example_4/end.txt -o example_4
+
+    Sped up version of example_1. The paths start with strings 'adc' or 'dab' and end with 'uNt' or'tNu' which are at the same five-fold vertex as 'a' and 'd' (see geometry_guide.png). Note that this will not create all paths from example_1, but a subset. However, the following script (hpRNA_constrain.py) generalizes the paths for ms2 using the --ms2 flag. Paths saved to example_4 folder.
+
+example_5:      ./hpRNA_constrain.py -p example_5/paths_out.txt
+                -r example_5/realize.txt -d example_5/degeneracy.txt -m
+                -o example_5
+
+    Realize instances of the 132 Hamiltonian paths for ms2, on 8 of the 12 vertices (proteins specified in realize.txt file). Gives 5280 paths to test against constraints formulated from analysis of the tomographic data.
+
+example_6:      ./hpRNA_constrain.py -p example_6/paths_out_realized.txt --ms2
+                -x example_6/constrain.txt -c example_6/connectivity.txt
+                -o example_6
+
+    Constraints deriving from tomographic data are applied to the 5280 paths realized in example_5. This results in 5 possible results. Constraints are connections between positions, and are marked in the constrain.txt file with (1) indicating must be occupied and (0) indicating must not be occupied. Remaining edges are free to be either occupied or unoccupied. If output is below 20 paths, then graphical representations (corresponding to geometry_guide.png) are drawn. Here, green and red dashed refer to constraints from constrain.txt, with green indicating occupied constraints and red dashed indicating non-occupied constraints. The inferred paths are given in black. The --ms2 tag has also cleaved the start and end of paths around the starting/ending vertex.
 
 CONFIGURATION
 -------------
 
-Given the above guide, and comments in the code, the program can be amended/adjusted to calculate Hamiltonian paths for a wide variety of scenarios, and additional constraints can be included if desired by the user. For support/collaboration, please contact jg923@york.ac.uk
+Given the above guide, and comments in the code, the program can be amended/adjusted to calculate Hamiltonian or non-Hamiltonian connected paths for a wide variety of scenarios, and additional constraints can be included if desired by the user. For support/collaboration, please contact jg923@york.ac.uk
 
 LICENSE
 -------
