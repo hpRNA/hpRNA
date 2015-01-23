@@ -45,9 +45,9 @@ Please see NOTES.md file or website (hpRNA.github.io) for contextual guidance.
   
 Generate connected paths on a polyhedral cage
 
-usage: hpRNA_generate.py -c CONNECTIVITY -s START [-h] [-e END] [-r REQUIRE]
-                         [-p PRECLUDE] [-l LENGTH] [-i ITERATION]
-                         [-d DEGENERACY] [-b] [-o OUTPUT]
+usage: 
+
+hpRNA_generate.py -c CONNECTIVITY -s START [-h] [-e END] [-r REQUIRE] [-p PRECLUDE] [-l LENGTH] [-i ITERATION] [-d DEGENERACY] [-b] [-o OUTPUT]
 
 required arguments:
 
@@ -112,9 +112,9 @@ optional arguments:
   
 Realize and constrain connected paths mapping to a polyhedral cage.
 
-usage: hpRNA_constrain.py -p PATHS [-h] [-x CONSTRAINTS] [-d DEGENERACY]
-                          [-r REALIZE] [-b] [-o OUTPUT] [-m] [-c CONNECTIVITY]
-                          [--ms2]
+usage:
+
+    hpRNA_constrain.py -p PATHS [-h] [-x CONSTRAINTS] [-d DEGENERACY] [-r REALIZE] [-b] [-o OUTPUT] [-m] [-c CONNECTIVITY] [--ms2]
 
 required arguments:
 
@@ -173,38 +173,41 @@ optional arguments:
 EXAMPLES
 --------
 
-example_1:      ./hpRNA_generate.py -c example_1/connectivity.txt
-                -s example_1/start.txt -e example_1/end.txt -o example_1
+example_1:
 
-    This would generate Hamiltonian paths for the ms2 example. Neighbor map corresponds (example_1/connectivity.txt) shows how the positions are linked. The paths start at position 'a' and end at postions 'd','u','N','t' which are at the same five-fold vertex as 'a' (see geometry_guide.png). Paths saved to example_1 folder. This script can run *very* slowly. A sped up version is provided as example 4.
+    ./hpRNA_generate.py -c example_1/connectivity.txt -s example_1/start.txt -e example_1/end.txt -o example_1
 
-example_2:      ./hpRNA_generate.py -c example_2/connectivity.txt
-                -s example_2/start.txt -l example_2/length.txt -o example_2
-                -b -d example_2/degeneracy.txt -r example_2/require.txt
+This would generate Hamiltonian paths for the ms2 example. Neighbor map corresponds (example_1/connectivity.txt) shows how the positions are linked. The paths start at position 'a' and end at postions 'd','u','N','t' which are at the same five-fold vertex as 'a' (see geometry_guide.png). Paths saved to example_1 folder. This script can run *very* slowly. A sped up version is provided as example 4.
 
-    This would generate connected paths corresponding to neighbor map in connectivity.txt (ms2), starting with 'ac', and of lengths 12 and 8. These would not be Hamiltonian paths. The paths are extended in each direction (using the both flag - compare with and without). Additionally, the entire first vertex requires nucleating before move to another position (see require.txt, every position requires the positions of the first vertex filled). Paths saved to example_2 folder.
+example_2:
 
-example_3:      ./hpRNA_generate.py -c example_3/connectivity.txt
-                -s example_3/start.txt -o example_3
+    ./hpRNA_generate.py -c example_2/connectivity.txt -s example_2/start.txt -l example_2/length.txt -o example_2 -b -d example_2/degeneracy.txt -r example_2/require.txt
 
-    Generate connected paths on a dodecahedron, starting with 'ab'. The connectivity map in this folder is different, corresponding to the dodecahedral geometry. Paths saved to example_3 folder.
+This would generate connected paths corresponding to neighbor map in connectivity.txt (ms2), starting with 'ac', and of lengths 12 and 8. These would not be Hamiltonian paths. The paths are extended in each direction (using the both flag - compare with and without). Additionally, the entire first vertex requires nucleating before move to another position (see require.txt, every position requires the positions of the first vertex filled). Paths saved to example_2 folder.
 
-example_4:      ./hpRNA_generate.py -c example_4/connectivity.txt
-                -s example_4/start.txt -e example_4/end.txt -o example_4
+example_3:
 
-    Sped up version of example_1. The paths start with strings 'adc' or 'dab' and end with 'uNt' or'tNu' which are at the same five-fold vertex as 'a' and 'd' (see geometry_guide.png). Note that this will not create all paths from example_1, but a subset. However, the following script (hpRNA_constrain.py) generalizes the paths for ms2 using the --ms2 flag. Paths saved to example_4 folder.
+    ./hpRNA_generate.py -c example_3/connectivity.txt -s example_3/start.txt -o example_3
 
-example_5:      ./hpRNA_constrain.py -p example_5/paths_out.txt
-                -r example_5/realize.txt -d example_5/degeneracy.txt -m
-                -o example_5
+Generate connected paths on a dodecahedron, starting with 'ab'. The connectivity map in this folder is different, corresponding to the dodecahedral geometry. Paths saved to example_3 folder.
 
-    Realize instances of the 132 Hamiltonian paths for ms2, on 8 of the 12 vertices (proteins specified in realize.txt file). Gives 5280 paths to test against constraints formulated from analysis of the tomographic data.
+example_4:
 
-example_6:      ./hpRNA_constrain.py -p example_6/paths_out_realized.txt --ms2
-                -x example_6/constrain.txt -c example_6/connectivity.txt
-                -o example_6
+    ./hpRNA_generate.py -c example_4/connectivity.txt -s example_4/start.txt -e example_4/end.txt -o example_4
 
-    Constraints deriving from tomographic data are applied to the 5280 paths realized in example_5. This results in 5 possible results. Constraints are connections between positions, and are marked in the constrain.txt file with (1) indicating must be occupied and (0) indicating must not be occupied. Remaining edges are free to be either occupied or unoccupied. If output is below 20 paths, then graphical representations (corresponding to geometry_guide.png) are drawn. Here, green and red dashed refer to constraints from constrain.txt, with green indicating occupied constraints and red dashed indicating non-occupied constraints. The inferred paths are given in black. The --ms2 tag has also cleaved the start and end of paths around the starting/ending vertex.
+Sped up version of example_1. The paths start with strings 'adc' or 'dab' and end with 'uNt' or'tNu' which are at the same five-fold vertex as 'a' and 'd' (see geometry_guide.png). Note that this will not create all paths from example_1, but a subset. However, the following script (hpRNA_constrain.py) generalizes the paths for ms2 using the --ms2 flag. Paths saved to example_4 folder.
+
+example_5:
+
+    ./hpRNA_constrain.py -p example_5/paths_out.txt -r example_5/realize.txt -d example_5/degeneracy.txt -m -o example_5
+
+Realize instances of the 132 Hamiltonian paths for ms2, on 8 of the 12 vertices (proteins specified in realize.txt file). Gives 5280 paths to test against constraints formulated from analysis of the tomographic data.
+
+example_6:
+
+    ./hpRNA_constrain.py -p example_6/paths_out_realized.txt --ms2 -x example_6/constrain.txt -c example_6/connectivity.txt -o example_6
+
+Constraints deriving from tomographic data are applied to the 5280 paths realized in example_5. This results in 5 possible results. Constraints are connections between positions, and are marked in the constrain.txt file with (1) indicating must be occupied and (0) indicating must not be occupied. Remaining edges are free to be either occupied or unoccupied. If output is below 20 paths, then graphical representations (corresponding to geometry_guide.png) are drawn. Here, green and red dashed refer to constraints from constrain.txt, with green indicating occupied constraints and red dashed indicating non-occupied constraints. The inferred paths are given in black. The --ms2 tag has also cleaved the start and end of paths around the starting/ending vertex.
 
 CONFIGURATION
 -------------
