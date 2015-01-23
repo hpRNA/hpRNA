@@ -47,7 +47,7 @@ Generate connected paths on a polyhedral cage
 
 usage: 
 
-hpRNA_generate.py -c CONNECTIVITY -s START [-h] [-e END] [-r REQUIRE] [-p PRECLUDE] [-l LENGTH] [-i ITERATION] [-d DEGENERACY] [-b] [-o OUTPUT]
+    hpRNA_generate.py -c CONNECTIVITY -s START [-h] [-e END] [-r REQUIRE] [-p PRECLUDE] [-l LENGTH] [-i ITERATION] [-d DEGENERACY] [-b] [-o OUTPUT]
 
 required arguments:
 
