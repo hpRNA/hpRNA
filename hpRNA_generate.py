@@ -159,8 +159,8 @@ def execute_forward(i, connectivity, outfile, degeneracy, req, pre):
     
     for np in connectivity[i[-1]]:
         if np not in i:
-            if not args.preclude or not any((p in i) for p in pre[np]):
-                if not args.require or all((t in i) for t in req[np]):
+            if not args.preclude or not any(all(pp in i for pp in p) for p in pre[np]):
+                if not args.require or any(all(tt in i for tt in t) for t in req[np]):
                     outfile.write(i+np+'\n')
 
 
@@ -173,14 +173,14 @@ def execute_both(i, connectivity, outfile, degeneracy, req, pre):
     # Forwards
     for np in connectivity[i[-1]]:
         if np not in i:
-            if not args.preclude or not any((p in i) for p in pre[np]):
-                if not args.require or all((t in i) for t in req[np]):
+            if not args.preclude or not any(all(pp in i for pp in p) for p in pre[np]):
+                if not args.require or any(all(tt in i for tt in t) for t in req[np]):
                     outfile.write(i+np+'\n')
     # Backwards
     for np in connectivity[i[0]]:
         if np not in i:
-            if not args.preclude or not any((p in i) for p in pre[np]):
-                if not args.require or all((t in i) for t in req[np]):
+            if not args.preclude or not any(all(pp in i for pp in p) for p in pre[np]):
+                if not args.require or any(all(tt in i for tt in t) for t in req[np]):
                     outfile.write(rework(np+i, degeneracy)+'\n')
 
 def rework(path, degeneracy):
